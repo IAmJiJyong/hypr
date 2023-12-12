@@ -1,0 +1,126 @@
+@import "colors-waybar.css";
+
+/* margin: top right bottom left */
+/* Spacing outside the element */
+
+/* padding: top right bottom left */
+/* Spacing inside the element */
+
+* {
+  font-family: FiraCode Nerd Font, FontAwesome;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+window#waybar {
+  background-color: @background;
+  color: @bg0;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  border-radius: 0px 0px 15px 15px;
+  transition-duration: 0.5s;
+
+  border-bottom-width: 5px;
+  border-bottom-color: @color1;
+  border-bottom-style: solid;
+}
+
+#clock,
+#custom-wttr,
+#workspaces,
+#pulseaudio,
+#network,
+#tray,
+#cpu,
+#memory,
+#disk,
+#backlight,
+#battery {
+  /* background-color: @color1; */
+  /* color: @foreground; */
+
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 7px;
+  margin-bottom: 12px;
+  margin-left: 3px;
+  margin-right: 3px;
+  border-radius: 10px;
+
+  border-bottom-width: 5px;
+  /* border-bottom-color: @color2; */
+  border-bottom-style: solid;
+}
+
+#workspaces {
+  background-color: @color1;
+  color: @foreground;
+  border-bottom-color: @color2;
+  padding: 0px;
+}
+
+#workspaces button.active {
+  background-color: @color3;
+  color: @cursor;
+
+  border-radius: 10px;
+
+  margin-bottom: -5px;
+
+  border-bottom-width: 5px;
+  border-bottom-color: @color4;
+  border-bottom-style: solid;
+}
+
+#workspaces button:hover {
+  background-color: @color7;
+  color: @cursor;
+
+  border-radius: 10px;
+
+  margin-bottom: -5px;
+
+  border-bottom-width: 5px;
+  border-bottom-style: solid;
+}
+
+#cpu,
+#memory,
+#disk {
+  background-color: @color5;
+  color: @foreground;
+  border-bottom-color: @color6;
+}
+
+#clock,
+#custom-wttr {
+  background-color: @color8;
+  color: @foreground;
+  border-bottom-color: @color9;
+}
+
+#pulseaudio,
+#backlight,
+#battery {
+  background-color: @color2;
+  color: @foreground;
+  border-bottom-color: @color7;
+}
+
+#network,
+#tray {
+  background-color: @color6;
+  color: @foreground;
+  border-bottom-color: @color9;
+}
+
+tooltip {
+  background: @background;
+  border-radius: 10px;
+  border: 3px solid @color1;
+  color: @foreground;
+}
+
+tooltip label {
+  color: @color7;
+}

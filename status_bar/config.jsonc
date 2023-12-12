@@ -1,0 +1,191 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 60,
+  "margin-left": 120,
+  "margin-right": 120,
+  "modules-left": ["clock", "custom/wttr", "cpu", "memory", "disk"],
+  "modules-center": ["hyprland/workspaces"],
+  "modules-right": ["group/hardware", "group/system"],
+
+  "group/hardware": {
+    "orientation": "horizontal",
+    "modules": ["pulseaudio", "backlight", "battery"]
+  },
+
+  "group/system": {
+    "orientation": "horizontal",
+    "modules": ["network", "tray"]
+  },
+
+  "mpris": {
+    "interval": 1,
+    "format": "{player_icon} {dynamic}",
+    "format-paused": "{status_icon} <i>{dynamic}</i>",
+    "title-len": 20,
+    "artist-len": 20,
+    "ignored-players": ["firefox"],
+    "player-icons": {
+      "plasma-browser-integration": " ",
+      "spotify": "󰓇",
+      "default": "▶",
+      "mpv": "🎵"
+    },
+    "status-icons": {
+      "paused": "⏸️"
+    }
+  },
+  "clock": {
+    // "format": "  {:%H:%M}",
+    "format": "{:  %F  %H:%M}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'>{}</span>",
+        "days": "<span color='#ecc6d9'>{}</span>",
+        "weeks": "<span color='#99ffdd'>W{}</span>",
+        "weekdays": "<span color='#ffcc66'>{}></span>",
+        "today": "<span color='#ff6699'><u>{}</u></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+
+  "custom/wttr": {
+    "format": "{}",
+    "tooltip": true,
+    "interval": 3600,
+    "exec": "~/.config/hypr/scripts/wttr.py",
+    "return-type": "json",
+    "on-click": "~/.config/hypr/scripts/random_wallpaper.sh ~/Pictures/wallpapers-main",
+    "on-click-right": "~/.config/hypr/scripts/wallpaper_select.sh ~/Pictures/wallpapers-main"
+  },
+
+  "cpu": {
+    "interval": 1,
+    "format": " {usage}%"
+  },
+
+  "memory": {
+    "interval": 1,
+    "format": "﬙ {percentage}%",
+    "states": {
+      "warning": 85
+    }
+  },
+
+  "disk": {
+    "interval": 30,
+    "format": " {used}",
+    "path": "/home/iamjijyong",
+    "tooltip": true,
+    "tooltip-format": "{used}/{total} => {path} {percentage_used}%"
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon} {volume}%",
+    "format-muted": "󰸈 {volume}%",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "󰋎",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    },
+    "scroll-step": 1,
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pavucontrol",
+    "ignored-sinks": ["Easy Effects Sink"]
+  },
+
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-icons": ["󰃞 ", "󰃟", "󰃝", "󰃠"],
+    "tooltip": false
+  },
+
+  "battery": {
+    "interval": 60,
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "max-length": 10,
+    "format": "{icon} {capacity}%",
+    "format-warning": "{icon} {capacity}%",
+    "format-critical": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{icon} {capacity}%",
+    "format-full": " 100%",
+    "format-icons": ["", "", "", "", "", "", "", "", "", ""]
+  },
+  "network": {
+    "interval": 1,
+    "format-wifi": " {icon} {essid}",
+    "format-ethernet": " 󰈀  {ifname} ",
+    "format-linked": " {icon} {essid} (No IP)",
+    "format-disconnected": " 󰲛 Disconnected",
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "on-click": "konsole -e nmtui",
+    "tooltip": true,
+    "tooltip-format-wifi": "{ifname} {signalStrength}% {bandwidthTotalBytes}",
+    "tooltip-format-ethernet": "{ifname} {bandwidthTotalBytes}"
+  },
+  "tray": {
+    "icon-size": 24,
+    "spacing": 5
+  },
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": " ",
+      "dnd-notification": "<span foreground='gray'><span foreground='red'><sup></sup></span></span>",
+      "dnd-none": "<span foreground='gray'> </span>",
+      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "inhibited-none": "<span foreground='gray'> </span>",
+      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": "<span foreground='gray'> </span>"
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+
+  "hyprland/workspaces": {
+    "disable-scroll": false,
+    /* "all-outputs": true, */
+    // "active-only": true,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "壹",
+      "2": "貳",
+      "3": "參",
+      "4": "肆",
+      "5": "伍",
+      "6": "陸",
+      "7": "柒",
+      "8": "捌",
+      "9": "玖",
+      "urgent": "",
+      "focused": "",
+      "default": ""
+    }
+  }
+}
