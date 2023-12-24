@@ -66,26 +66,31 @@ CHANCE = {
     "chanceofwindy": "大風"
 }
 
-def format_date_by_count(count:int):
+
+def format_date_by_count(count: int):
     if count == 0:
         return '今天'
     elif count == 1:
         return '明天'
     return '後天'
 
-def format_time(time:str):
-    return time.replace("00","").zfill(2)
 
-def format_temp(temp:str):
+def format_time(time: str):
+    return time.replace("00", "").zfill(2)
+
+
+def format_temp(temp: str):
     return f"{temp}°C".ljust(3)
 
-def format_chances(hour_weather:str):
+
+def format_chances(hour_weather: str):
     result = []
     for event in CHANCE.keys():
         if int(hour_weather[event]) > 0:
             result.append(f'{CHANCE[event]} {hour_weather[event]}%')
 
-    return ", ".join(result) 
+    return ", ".join(result)
+
 
 def format_current_condition_weather(current_condition) -> str:
     result = ""
@@ -95,7 +100,8 @@ def format_current_condition_weather(current_condition) -> str:
     result += f"濕度: {current_condition['humidity']}%\n"
     return result
 
-def format_day_weather(count:int, day_weather) -> str:
+
+def format_day_weather(count: int, day_weather) -> str:
     result = ""
     result += f"\n<b>{format_date_by_count(count)}, {day_weather['date']}</b>\n"
     result += f"⬆️ {day_weather['maxtempC']}°C ⬇️ {day_weather['mintempC']}°C "
@@ -105,25 +111,28 @@ def format_day_weather(count:int, day_weather) -> str:
             if int(format_time(hour['time'])) < datetime.now().hour - 2:
                 continue
         result += f"{format_time(hour['time'])} {WEATHER_CODES[hour['weatherCode']]} {format_temp(hour['FeelsLikeC'])}, {format_chances(hour)}, {hour['lang_zh-tw'][0]['value']}\n"
-    
 
     return result
 
 
-weather_data_json = requests.get("https://wttr.in/Taichung?format=j1&lang=zh-tw").json()
+if __name__ == '__main__':
+    result = {
+        'text': "",
+        'tooltip': ""
+    }
+    try:
+        weather_data_json = requests.get(
+            "https://wttr.in/Taichung?format=j1&lang=zh-tw").json()
 
-current_condition = weather_data_json["current_condition"][0]
-weather = weather_data_json["weather"]
-result = {
-    'text':"",
-    'tooltip':""
-}
+        current_condition = weather_data_json["current_condition"][0]
+        weather = weather_data_json["weather"]
 
-result["text"] = f" {WEATHER_CODES[current_condition['weatherCode']]} {current_condition['FeelsLikeC']}°C"
-result['tooltip'] = format_current_condition_weather(current_condition) 
+        result["text"] = f" {WEATHER_CODES[current_condition['weatherCode']]} {current_condition['FeelsLikeC']}°C"
+        result['tooltip'] = format_current_condition_weather(current_condition)
 
-for i, day_weather in enumerate(weather):
-    result['tooltip'] += format_day_weather(i, day_weather)
-
-
-print(json.dumps(result,ensure_ascii=False))
+        for i, day_weather in enumerate(weather):
+            result['tooltip'] += format_day_weather(i, day_weather)
+    except:
+        result['text'] = 'Wttr: Error'
+        result['tooltip'] = ""
+    print(json.dumps(result, ensure_ascii=False))
