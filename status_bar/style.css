@@ -7,7 +7,9 @@
 /* Spacing inside the element */
 
 * {
-  font-family: FiraCode Nerd Font, FontAwesome;
+  font-family:
+    FiraCode Nerd Font,
+    FontAwesome;
   font-size: 16px;
   font-weight: bold;
 }
@@ -37,7 +39,7 @@ window#waybar {
 #backlight,
 #battery {
   /* background-color: @color1; */
-  /* color: @foreground; */
+  color: @background;
 
   padding-left: 10px;
   padding-right: 10px;
@@ -88,14 +90,14 @@ window#waybar {
 #memory,
 #disk {
   background-color: @color5;
-  color: @foreground;
+  /* color: @foreground; */
   border-bottom-color: @color6;
 }
 
 #clock,
 #custom-wttr {
   background-color: @color8;
-  color: @foreground;
+  /* color: @foreground; */
   border-bottom-color: @color9;
 }
 
@@ -103,14 +105,14 @@ window#waybar {
 #backlight,
 #battery {
   background-color: @color2;
-  color: @foreground;
+  /* color: @foreground; */
   border-bottom-color: @color7;
 }
 
 #network,
 #tray {
   background-color: @color6;
-  color: @foreground;
+  /* color: @foreground; */
   border-bottom-color: @color9;
 }
 
