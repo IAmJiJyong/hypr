@@ -29,7 +29,9 @@ window#waybar {
 
 #clock,
 #custom-wttr,
+#custom-wallpaper,
 #workspaces,
+#wireplumber,
 #pulseaudio,
 #network,
 #tray,
@@ -101,6 +103,7 @@ window#waybar {
   border-bottom-color: @color9;
 }
 
+#wireplumber,
 #pulseaudio,
 #backlight,
 #battery {
@@ -125,4 +128,10 @@ tooltip {
 
 tooltip label {
   color: @color7;
+}
+
+#custom-wallpaper {
+  background-color: @color11;
+  /* color: @foreground; */
+  border-bottom-color: @color13;
 }

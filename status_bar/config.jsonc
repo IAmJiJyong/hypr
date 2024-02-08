@@ -2,11 +2,11 @@
   "layer": "top",
   "position": "top",
   "height": 60,
-  "margin-left": 120,
-  "margin-right": 120,
+  "margin-left": 100,
+  "margin-right": 100,
   "modules-left": ["clock", "custom/wttr", "cpu", "memory", "disk"],
   "modules-center": ["hyprland/workspaces"],
-  "modules-right": ["group/hardware", "group/system"],
+  "modules-right": ["group/hardware", "group/system", "custom/wallpaper"],
 
   "group/hardware": {
     "orientation": "horizontal",
@@ -16,6 +16,13 @@
   "group/system": {
     "orientation": "horizontal",
     "modules": ["network", "tray"]
+  },
+
+  "custom/wallpaper": {
+    "format": " ",
+    "tooltip": false,
+    "on-click": "~/.config/hypr/scripts/random_wallpaper.sh ~/Pictures/wallpapers-main",
+    "on-click-right": "~/.config/hypr/scripts/wallpaper_select.sh ~/Pictures/wallpapers-main"
   },
 
   "mpris": {
@@ -35,6 +42,7 @@
       "paused": "⏸️"
     }
   },
+
   "clock": {
     // "format": "  {:%H:%M}",
     "format": "{:  %F  %H:%M}",
@@ -64,9 +72,7 @@
     "tooltip": true,
     "interval": 3600,
     "exec": "~/.config/hypr/scripts/wttr.py",
-    "return-type": "json",
-    "on-click": "~/.config/hypr/scripts/random_wallpaper.sh ~/Pictures/wallpapers-main",
-    "on-click-right": "~/.config/hypr/scripts/wallpaper_select.sh ~/Pictures/wallpapers-main"
+    "return-type": "json"
   },
 
   "cpu": {
@@ -89,6 +95,24 @@
     "tooltip": true,
     "tooltip-format": "{used}/{total} => {path} {percentage_used}%"
   },
+
+  "wireplumber": {
+    "format": "{icon} {volume}%",
+    "format-muted": "",
+    "on-click": "helvum",
+    "max-volume": 150,
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "󰋎",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    },
+    "scroll-step": 0.2
+  },
+
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-bluetooth": "{icon} {volume}%",
