@@ -1,7 +1,8 @@
 #!/bin/zsh
 
 wallpaper_path=$1
-data=$(find $wallpaper_path -type f  \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" -o -iname "*.gif" \) -printf "img:$1/%P:text:%P\n") 
+# data=$(find $wallpaper_path -type f  \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" -o -iname "*.gif" \) -printf "img:$1/%P:text:%P\n") 
+data=$(fd . $wallpaper_path -tf -e jpg -e png -e gif --exec printf "img:{}:text:{/.}\n")
 
 echo -e $data | wofi --show dmenu | {
     read -r id
